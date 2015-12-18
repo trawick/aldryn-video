@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.utils.six import iteritems, text_type
 from django.utils.six.moves.urllib.parse import urlencode
 from django.utils.six.moves.urllib.parse import parse_qs, urlparse, urlunparse
 
@@ -42,10 +43,10 @@ def build_html_iframe(response, url_params=None, iframe_attrs=None):
 
         html['src'] = urlunparse(url_parts)
 
-        for key, value in iframe_attrs.iteritems():
+        for key, value in iteritems(iframe_attrs):
             if value:
                 html[key] = value
-    return unicode(html)
+    return text_type(html)
 
 
 def get_player_url(response):
